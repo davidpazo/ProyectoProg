@@ -9,7 +9,7 @@ public class Estadio {
          Metodos obx = new Metodos();
         int op;
         do {
-            op = Integer.parseInt(JOptionPane.showInputDialog("opciones: \n1 --> Añadir\n2 --> Visualizar\n3 --> Consultar Libro\n4 --> Borrar\n5 --> Ordenar\n6 --> Modificar\n7 --> Buscar\n8 --> Salir"));
+            op = Integer.parseInt(JOptionPane.showInputDialog("opciones: \n1 --> Añadir\n2 --> Visualizar\n3 --> Consultar Reserva\n4 --> Dar baja\n5 --> Ordenar\n6 --> Editar Reserva\n7 --> Buscar\n8 --> Salir"));
             switch (op) {
                 case 1:
                     obx.add();
@@ -21,13 +21,13 @@ public class Estadio {
                     obx.consultar();
                     break;
                 case 4:
-                    obx.remove();
+                    obx.darBaja();
                     break;
                 case 5:
                     obx.ordenar();
                     break;
                 case 6:
-                    obx.modificar();
+                    obx.editarInfo();
                     break;
                 case 7:
                     obx.buscar();

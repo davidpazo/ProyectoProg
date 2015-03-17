@@ -1,12 +1,17 @@
 package Estadio;
-/**** @author DAVID ****/
-public class Entrada {
-    private String nom="";
-    private String dni="";
+
+/**
+ * ** @author DAVID ***
+ */
+public class Entrada implements Comparable {
+
+    private String nom = "";
+    private String dni = "";
     private int numA;
 
-    public Entrada(){
+    public Entrada() {
     }
+
     public Entrada(String nom, String dni, int numA) {
         this.nom = nom;
         this.dni = dni;
@@ -36,9 +41,26 @@ public class Entrada {
     public void setNumA(int numA) {
         this.numA = numA;
     }
-        
-    
-    public void editarInfo(){
-        
+
+    public void editarInfo() {
+
     }
+
+    @Override
+    public String toString() {
+        return "Entrada{" + "nom=" + nom + ", dni=" + dni + ", numA=" + numA + '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Entrada obx = (Entrada) o;
+        if (this.dni.compareToIgnoreCase(obx.dni) == 0) {
+            return 0;
+        }else if(this.dni.compareToIgnoreCase(obx.dni)>1)
+            return 1;
+        else{
+            return -1;
+        }
+    }
+
 }

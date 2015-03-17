@@ -11,13 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**** @author DAVID ****/
-public class Metodos {
 /**
- *
- * @author oquintansocampo
+ * ** @author DAVID ***
  */
-public class Libreria {
+public class Metodos {
 
     PrintWriter fich;
     Scanner sc;
@@ -37,15 +34,15 @@ public class Libreria {
                 String n = JOptionPane.showInputDialog("Nombre?");
                 String d = JOptionPane.showInputDialog("Dni?");
                 int nu = Integer.parseInt(JOptionPane.showInputDialog("Numero de asientos?"));
-                
-                Entrada l = new Entrada(n,d,nu);
+
+                Entrada l = new Entrada(n, d, nu);
                 entrada.add(l);
                 fich.println(l);
                 bucle = JOptionPane.showConfirmDialog(null, "Añadir mas?");
             } while (bucle == 0);
 
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             fich.close();
             sc.close();
@@ -53,7 +50,7 @@ public class Libreria {
     }
 
     public void consultar() {
-        String nombreL;
+        String nombre;
         int precio = 0;
         String n = "";
         try {
@@ -69,9 +66,9 @@ public class Libreria {
                         entrada.add(new Entrada(l[i], l[i + 1], Integer.parseInt(l[i + 3])));
                     }
                 }
-                nombreL = JOptionPane.showInputDialog("Nombre del Libro");
+                nombre = JOptionPane.showInputDialog("Nombre Persona");
                 for (Entrada l : entrada) {
-                    if (l.getNom().replace(' ', '-').equalsIgnoreCase(nombreL.replace(' ', '-'))) {
+                    if (l.getNom().replace(' ', '-').equalsIgnoreCase(nombre.replace(' ', '-'))) {
                         precio = l.getNumA();
                         n = l.getDni();
                         aux = 1;
@@ -80,13 +77,13 @@ public class Libreria {
                 if (aux == 1) {
                     JOptionPane.showMessageDialog(null, n + " - Precio: " + precio + "€");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No existe el libro: " + nombreL + ", en la Base de Datos.");
+                    JOptionPane.showMessageDialog(null, "No existe la persona: " + nombre + ", en la Base de Datos.");
                 }
                 bucle = JOptionPane.showConfirmDialog(null, "Buscar mas?");
             } while (bucle == 0);
 
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             sc.close();
         }
@@ -109,7 +106,7 @@ public class Libreria {
             }
             JOptionPane.showMessageDialog(null, ac);
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             sc.close();
         }
@@ -126,7 +123,7 @@ public class Libreria {
                     linea = sc.nextLine();
                     String[] l = linea.split(",");
                     for (int i = 0; i < l.length; i += 4) {
-                        entrada.add(new Entrada(l[i], l[i + 1],Integer.parseInt(l[i + 3])));
+                        entrada.add(new Entrada(l[i], l[i + 1], Integer.parseInt(l[i + 3])));
                     }
                 }
                 sc.close();
@@ -136,14 +133,14 @@ public class Libreria {
                 f.createNewFile();
                 fich = new PrintWriter(new FileWriter(new File(nombF), true));
                 for (int i = 0; i < entrada.size(); i++) {
-                    if (entrada.get(i).getDni() != 0) {
-                        fich.println(entrada.get(i));
-                    }
+
+                    fich.println(entrada.get(i));
+
                 }
                 JOptionPane.showMessageDialog(null, "Borrado Completado");
             }
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             fich.close();
             sc.close();
@@ -159,8 +156,8 @@ public class Libreria {
             while (sc.hasNextLine()) {
                 linea = sc.nextLine();
                 String[] l = linea.split(",");
-                for (int i = 0; i < l.length; i += 4) {
-                    entrada.add(new Entrada(l[i], l[i + 1], Integer.parseInt(l[i + 3])));
+                for (int i = 0; i < l.length; i += 3) {
+                    entrada.add(new Entrada(l[i], l[i + 1], Integer.parseInt(l[i + 2])));
                 }
             }
             sc.close();
@@ -170,8 +167,8 @@ public class Libreria {
                 String preg = JOptionPane.showInputDialog("Dni");
                 for (int i = 0; i < entrada.size(); i++) {
                     if (entrada.get(i).getNom().equalsIgnoreCase(preg)) {
-                        String precio = JOptionPane.showInputDialog("Nombre: " + entrada.get(i).getNom() + " Dni: " + entrada.get(i).getDni() + "Numero de asientos: "+ entrada.get(i).getDni());
-                        entrada.get(i).getNumA(Integer.parseInt(1));
+                        String ent = JOptionPane.showInputDialog("Nombre: " + entrada.get(i).getNom() + " Dni: " + entrada.get(i).getDni() + "Numero de asientos: " + entrada.get(i).getDni());
+                        //entrada.get(i).getNumA(Integer.parseInt(ent));
                         cont = 1;
                         break;
                     } else {
@@ -184,9 +181,9 @@ public class Libreria {
                     f.createNewFile();
                     fich = new PrintWriter(new FileWriter(new File(nombF), true));
                     for (int j = 0; j < entrada.size(); j++) {
-                        if (entrada.get(j).getDni() != 0) {
-                            fich.println(entrada.get(j));
-                        }
+
+                        fich.println(entrada.get(j));
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No existe el dni: " + preg + ", en la Base de Datos");
@@ -194,7 +191,7 @@ public class Libreria {
                 bucle = JOptionPane.showConfirmDialog(null, "Buscar mas?");
             } while (bucle == 0);
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             fich.close();
             sc.close();
@@ -221,12 +218,12 @@ public class Libreria {
             f.createNewFile();
             fich = new PrintWriter(new FileWriter(new File(nombF), true));
             for (int i = 0; i < entrada.size(); i++) {
-                if (entrada.get(i).getDni() != 0) {
-                    fich.println(entrada.get(i));
-                }
+
+                fich.println(entrada.get(i));
+
             }
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             fich.close();
             sc.close();
@@ -266,12 +263,11 @@ public class Libreria {
                 bucle = JOptionPane.showConfirmDialog(null, "Buscar mas?");
             } while (bucle == 0);
         } catch (IOException ex) {
-            Logger.getLogger(Libreria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             sc.close();
             fich.close();
         }
     }
-}
 }
 

@@ -1,0 +1,5 @@
+Entrada{nom=David, dni=36171984E, numA=3}
+Entrada{nom=ads, dni=3d, numA=2}
+Entrada{nom=david, dni=321, numA=1}
+Entrada{nom=david, dni=123, numA=1}
+Entrada{nom=david, dni=1, numA=1}
